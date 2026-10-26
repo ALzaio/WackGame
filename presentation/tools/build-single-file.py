@@ -9,7 +9,8 @@ b64 = lambda p: base64.b64encode(open(os.path.join(ROOT, p), 'rb').read()).decod
 
 css = re.sub(r'url\((assets/fonts/[^)]+)\)', lambda m: 'url(data:font/woff2;base64,%s)' % b64(m.group(1)), read('styles.css'))
 scenes = read('scenes.js')
-used = sorted(set(re.findall(r"PH\('([\w-]+)'\)", scenes)))
+names = [f[:-4] for f in os.listdir(os.path.join(ROOT, 'assets/img')) if f.endswith('.jpg')]
+used = sorted(n for n in names if re.search(r"['\"]%s['\"]" % re.escape(n), scenes))   # PH('tanker') or img: 'upstream'
 imgs = {n: 'data:image/jpeg;base64,' + b64('assets/img/%s.jpg' % n) for n in used}
 old = "const PH = name => `assets/img/${name}.jpg`;"
 assert old in scenes
