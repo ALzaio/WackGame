@@ -53,7 +53,8 @@
 
 /* ============ frame ============ */
 * { box-sizing: border-box; }
-html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: var(--night); }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: var(--night); overscroll-behavior: none; }
+body { touch-action: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
 body { font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: antialiased; user-select: none; -webkit-user-select: none; }
 body.idle, body.idle * { cursor: none; }
 #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; overflow: hidden; background: var(--night); }
@@ -70,6 +71,18 @@ body.idle, body.idle * { cursor: none; }
 #ind.on { opacity: 1; }
 #progress { position: fixed; left: 0; bottom: 0; height: 2px; width: 0; background: var(--line); z-index: 11; display: none; }
 #progress.on { display: block; }
+
+/* touch devices: fullscreen button (hides with the cursor) and a rotate hint in portrait */
+#fs { position: fixed; top: calc(10px + env(safe-area-inset-top, 0px)); right: calc(10px + env(safe-area-inset-right, 0px)); z-index: 12;
+  width: 44px; height: 44px; border: 0; border-radius: 50%; padding: 0; display: none; align-items: center; justify-content: center;
+  background: rgba(17, 20, 24, .55); color: #fff; opacity: 1; transition: opacity 250ms var(--ease); }
+body.touch #fs { display: flex; }
+body.touch.idle #fs { opacity: 0; pointer-events: none; }
+#rotate { position: fixed; left: 50%; top: calc(16px + env(safe-area-inset-top, 0px)); translate: -50% 0; z-index: 12; display: none;
+  align-items: center; gap: 10px; padding: 10px 18px; border-radius: 999px; background: var(--card); color: var(--ink-soft);
+  font: 500 15px/1.3 var(--sans); white-space: nowrap; pointer-events: none; }
+body.touch.portrait #rotate { display: flex; animation: hint 6s var(--ease) forwards; }
+@keyframes hint { 0%, 80% { opacity: 1; } 100% { opacity: 0; } }
 
 /* ============ states ============ */
 .dim { opacity: .4; }

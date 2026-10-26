@@ -515,14 +515,53 @@
     }
   }
   function onKeyUp(e) { if (NEXT.has(e.key) || PREV.has(e.key)) release('k:' + e.key); }
+  const root = document.documentElement;
+  const fsElement = () => document.fullscreenElement || document.webkitFullscreenElement;
+  const canFullscreen = !!(root.requestFullscreen || root.webkitRequestFullscreen);
   function toggleFullscreen() {
-    if (document.fullscreenElement) document.exitFullscreen();
-    else document.documentElement.requestFullscreen().catch(() => {});
+    if (fsElement()) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else {
+      const req = (root.requestFullscreen || root.webkitRequestFullscreen).call(root);
+      // phones: turn the show sideways when the browser allows it
+      Promise.resolve(req).then(() => screen.orientation && screen.orientation.lock && screen.orientation.lock('landscape')).catch(() => {});
+    }
   }
 
   function fit() {
-    scale = Math.min(innerWidth / W, innerHeight / H);
+    const vv = window.visualViewport;
+    const w = vv ? vv.width : innerWidth, h = vv ? vv.height : innerHeight;
+    scale = Math.min(w / W, h / H);
     stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    document.body.classList.toggle('portrait', h > w);
+  }
+
+  /* touch: tap left/right half, swipe left/right, press and hold to fast-forward / rewind */
+  const touch = { id: null, x: 0, y: 0, dir: 0, moved: false, timer: 0 };
+  function touchDown(e) {
+    touch.id = e.pointerId; touch.x = e.clientX; touch.y = e.clientY; touch.moved = false;
+    touch.dir = e.clientX >= innerWidth / 2 ? 1 : -1;
+    clearTimeout(touch.timer);
+    touch.timer = setTimeout(() => {          // still pressed and not swiping: hold
+      if (touch.id === null || touch.moved || inp.dir) return;
+      inp.dir = touch.dir; inp.key = 'touch'; inp.last = null;
+      startHold();
+    }, HOLD_MS);
+  }
+  function touchMove(e) {
+    if (e.pointerId !== touch.id) return;
+    if (Math.abs(e.clientX - touch.x) > 12 || Math.abs(e.clientY - touch.y) > 12) touch.moved = true;
+  }
+  function touchUp(e) {
+    if (e.pointerId !== touch.id) return;
+    touch.id = null;
+    clearTimeout(touch.timer);
+    if (inp.key === 'touch' && inp.holding) { release('touch'); return; }
+    const dx = e.clientX - touch.x, dy = e.clientY - touch.y;
+    let dir = touch.dir;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) dir = dx < 0 ? 1 : -1;   // swipe left = next
+    else if (touch.moved) return;                                                 // a drag, not a tap
+    press(dir, 'touch');
+    release('touch');
   }
 
   function preload() {
@@ -553,6 +592,8 @@
     if (PRINT) { renderPrint(); return; }
     fit();
     addEventListener('resize', fit);
+    if (window.visualViewport) visualViewport.addEventListener('resize', fit);
+    addEventListener('orientationchange', () => setTimeout(fit, 200));
     preload();
     const si = Math.min(SCENES.length - 1, Math.max(0, (parseInt(params.get('scene'), 10) || 1) - 1));
     const bi = Math.min(nBeats(si), Math.max(0, parseInt(params.get('beat'), 10) || 0));
@@ -561,11 +602,19 @@
     addEventListener('keydown', onKeyDown);
     addEventListener('keyup', onKeyUp);
     addEventListener('pointerdown', e => {
+      if (e.target.closest('#fs')) return;
+      if (e.pointerType === 'touch' || e.pointerType === 'pen') { touchDown(e); wake(); return; }
       if (e.button !== 0) return;
       press(e.clientX >= innerWidth / 2 ? 1 : -1, 'mouse');
     });
-    addEventListener('pointerup', () => release('mouse'));
-    addEventListener('pointercancel', () => release('mouse'));
+    addEventListener('pointermove', touchMove);
+    addEventListener('pointerup', e => { if (e.pointerId === touch.id) touchUp(e); else release('mouse'); });
+    addEventListener('pointercancel', e => { if (e.pointerId === touch.id) { touch.id = null; clearTimeout(touch.timer); release('touch'); } else release('mouse'); });
+    const fsBtn = document.getElementById('fs');
+    if (canFullscreen && matchMedia('(pointer: coarse)').matches) {
+      document.body.classList.add('touch');
+      fsBtn.addEventListener('click', e => { e.stopPropagation(); toggleFullscreen(); });
+    }
     addEventListener('blur', () => release());
     addEventListener('contextmenu', e => e.preventDefault());
     addEventListener('mousemove', wake);
