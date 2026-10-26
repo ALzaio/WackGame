@@ -1,6 +1,7 @@
 /* Scene data for "Blockchain in the Oil & Gas Industry".
    Each scene: markup + beats. beats[0] is the state when the scene opens (B0);
-   beats[1..n] are the presses marked ▸ in script.md. Elements with class "off" start hidden. */
+   beats[1..n] are the presses marked ▸ in script.md. Elements with class "off" start hidden.
+   Auto mode: b0Ms = planned scene length minus the beat timings (narration before the first ▸). */
 (() => {
   'use strict';
 
@@ -86,7 +87,7 @@
 
   /* S1 · The hook */
   S.push({
-    id: 's1', part: 'A', bg: 'night', b0Ms: 900,
+    id: 's1', part: 'A', bg: 'night', b0Ms: 3000,
     autoMs: [2200, 5600, 4000, 3300],
     html: `
       <div class="photo off" id="s1-photo"><img src="${PH('tanker')}" alt=""><div class="scrim"></div></div>
@@ -120,7 +121,7 @@
   /* S2 · Title and roadmap */
   const ROAD = ['How the oil business works', 'What blockchain is', 'Where it’s used', 'Real example: VAKT', 'Challenges &amp; benefits'];
   S.push({
-    id: 's2', part: 'A', bg: 'paper',
+    id: 's2', part: 'A', bg: 'paper', b0Ms: 2500,
     autoMs: [6000, 10500],
     html: `
       <div class="abs" style="left:120px;top:384px;width:967px">
@@ -146,7 +147,7 @@
   ];
   const dotX = i => COLX[i] + COLW / 2 - 14;
   S.push({
-    id: 's3', part: 'A', bg: 'paper',
+    id: 's3', part: 'A', bg: 'paper', b0Ms: 7800,
     autoMs: [3200, 5200, 4400, 7200, 3200],
     html: `
       <h2 class="title">Three stages of oil</h2>
@@ -211,7 +212,7 @@
     return `<path d="M${p(a0)}A${r} ${r} 0 0 1 ${p(a1)}"/><path d="M${h1}L${hx.toFixed(1)} ${hy.toFixed(1)}L${h2}"/>`;
   };
   S.push({
-    id: 's4', part: 'B', bg: 'paper',
+    id: 's4', part: 'B', bg: 'paper', b0Ms: 6600,
     autoMs: [3600, 2800, 8600, 4400],
     html: `
       <h2 class="title">One cargo, many hands</h2>
@@ -264,7 +265,7 @@
     { k: 'fraud', word: 'Fraud', ico: 'warn', cls: 'risk' },
   ];
   S.push({
-    id: 's5', part: 'B', bg: 'paper',
+    id: 's5', part: 'B', bg: 'paper', b0Ms: 11700,
     autoMs: [4600, 9000, 5200, 12600, 4900],
     html: `
       <div class="s5-main">
@@ -289,7 +290,7 @@
         <img src="${PH('singapore-port')}" alt=""><div class="scrim"></div>
         <div class="abs eyebrow w80 off s5-ht" style="left:120px;top:600px;color:rgba(255,255,255,.8)">Singapore · 2020</div>
         <div class="abs serif off s5-ht" style="left:120px;top:634px;font-size:72px;line-height:1.1;color:#fff">Hin Leong collapses</div>
-        <div class="abs kw off s5-ht" style="left:120px;top:732px;color:#fff">US$<span class="mono" id="s5-bn">3.5</span> bn owed to 23 banks</div>
+        <div class="abs kw off s5-ht" style="left:120px;top:732px;color:#fff">US$<span class="tnum" id="s5-bn">3.5</span> bn owed to 23 banks</div>
         <div class="abs label w80 off s5-ht" style="left:120px;top:800px">forged documents · same cargo financed more than once</div>
         <div class="abs cap off s5-ht" style="right:120px;top:950px;color:rgba(255,255,255,.7)">Sources: PwC report via GTR, CNBC, 2020</div>
       </div>
@@ -338,7 +339,7 @@
     { n: 4, data: 'Delivered', prev: 'prev #e04b…', hash: '#5b8d…' },
   ];
   S.push({
-    id: 's6', part: 'C', bg: 'paper',
+    id: 's6', part: 'C', bg: 'paper', b0Ms: 11300,
     autoMs: [3100, 6900, 8500, 7200, 4000],
     html: `
       <h2 class="title">Blockchain = one shared record</h2>
@@ -431,7 +432,7 @@
       ${['#a3f9…', '#7c21…', '#e04b…', '#5b8d…'].map((h, i) => `<div class="mblk mono" style="left:${i * 180}px">${h}</div>${i < 3 ? `<div class="mlnk" style="left:${i * 180 + 140}px"></div>` : ''}`).join('')}
     </div>`;
   S.push({
-    id: 's7', part: 'C', bg: 'paper',
+    id: 's7', part: 'C', bg: 'paper', b0Ms: 6400,
     autoMs: [3000, 7400, 9200],
     html: `
       <h2 class="title" id="s7-t1">Who can join?</h2>
@@ -497,7 +498,7 @@
     </svg>`;
   };
   S.push({
-    id: 's8', part: 'D', bg: 'paper',
+    id: 's8', part: 'D', bg: 'paper', b0Ms: 14900,
     autoMs: [3800, 11900, 5100, 4300, 4000],
     html: `
       <h2 class="title">Where it’s used</h2>
@@ -553,7 +554,7 @@
   /* S9 · When does it make sense? */
   const CHECKS = ['Many companies share the same data', 'They don’t fully trust each other', 'Mistakes or fraud are expensive'];
   S.push({
-    id: 's9', part: 'D', bg: 'paper',
+    id: 's9', part: 'D', bg: 'paper', b0Ms: 3400,
     autoMs: [4400, 2600, 2900, 4700],
     html: `
       <h2 class="title">When does blockchain make sense?</h2>
@@ -586,7 +587,7 @@
     { x: 1572, year: '2020', chips: ['Saudi Aramco', '$<span id="s10-five">5</span> M'] },
   ];
   S.push({
-    id: 's10', part: 'E', bg: 'paper',
+    id: 's10', part: 'E', bg: 'paper', b0Ms: 10500,
     autoMs: [2400, 6000, 8800, 6300],
     html: `
       <div class="photo s10-ph"><img src="${PH('northsea')}" alt=""><div class="scrim"></div>
@@ -649,7 +650,7 @@
       <div class="s11-c2 mono">Load: ${date}</div>
     </div>`;
   S.push({
-    id: 's11', part: 'E', bg: 'paper',
+    id: 's11', part: 'E', bg: 'paper', b0Ms: 17000,
     autoMs: [2100, 5100, 6400, 5100, 9300, 7000],
     html: `
       <h2 class="title">How a deal works</h2>
@@ -741,7 +742,7 @@
   /* S12 · The result */
   const SCATTER = [[20, 30, -8], [120, 6, 5], [230, 40, -4], [60, 120, 9], [170, 110, -10], [280, 130, 6], [10, 210, 4], [120, 200, -6], [240, 220, 10]];
   S.push({
-    id: 's12', part: 'E', bg: 'paper',
+    id: 's12', part: 'E', bg: 'paper', b0Ms: 4400,
     autoMs: [4300, 4100, 6200],
     html: `
       <h2 class="title">The result</h2>
@@ -806,7 +807,7 @@
         <path id="s13-shackle" d="M16 21v-5a8 8 0 0 1 16 0v5" class="locks"/>
       </g></svg>`;
   S.push({
-    id: 's13', part: 'F', bg: 'paper',
+    id: 's13', part: 'F', bg: 'paper', b0Ms: 18000,
     autoMs: [2500, 5700, 5000, 4800, 3800, 7200],
     html: `
       <h2 class="title" style="top:388px">Challenges</h2>
@@ -836,6 +837,7 @@
       }),
     ],
     outro: f => { f.dim(['.s13-c', '.s13-n'], false, 'dim', { dur: 250 }); return 250; },
+    printOutro: true,
   });
 
   /* S14 · Advantages */
@@ -847,7 +849,7 @@
     { ico: 'gearcheck', word: 'Automation', line: 'smart contracts pay &amp; approve' },
   ];
   S.push({
-    id: 's14', part: 'F', bg: 'paper',
+    id: 's14', part: 'F', bg: 'paper', b0Ms: 10200,
     autoMs: [2700, 3700, 3200, 3800, 4100, 4300],
     html: `
       <h2 class="title">Benefits</h2>
@@ -874,7 +876,7 @@
     [1440, 384, -12], [1580, 470, 8], [420, 600, 7], [800, 610, -10], [1150, 596, 5], [1500, 610, -5]];
   const S15B = [390, 690, 990, 1290];
   S.push({
-    id: 's15', part: 'F', bg: 'paper',
+    id: 's15', part: 'F', bg: 'paper', b0Ms: 1600,
     autoMs: [6400, 5600, 6000, 4400],
     html: `
       <div class="s15-bar off" id="s15-bar">

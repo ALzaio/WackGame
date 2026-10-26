@@ -89,6 +89,7 @@ body.idle, body.idle * { cursor: none; }
 .eyebrow { font: 500 20px/1.3 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
 .petrol { color: var(--petrol); } .crude { color: var(--crude); } .risk { color: var(--risk); } .ok { color: var(--ok); }
 .w80 { color: rgba(255, 255, 255, .8); }
+.tnum { font-variant-numeric: tabular-nums; }
 
 /* ============ icons & lines ============ */
 .ico { display: block; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
@@ -127,7 +128,7 @@ body.idle, body.idle * { cursor: none; }
 .s1 #s1-num { font-size: 96px; line-height: 1; color: #fff; }
 .s1 .s1-stat { display: flex; align-items: baseline; white-space: nowrap; }
 .s1 .s1-unit { margin-left: 20px; }
-.s1 .s1-q { left: 0; width: 1920px; top: 780px; text-align: center; font-size: 64px; line-height: 1.15; color: #fff; }
+.s1 .s1-q { left: 120px; width: 800px; top: 744px; font-size: 64px; line-height: 1.15; color: #fff; }
 .s1 .s1-dark { left: 0; top: 0; width: 1920px; height: 1080px; background: var(--night); }
 
 /* ============ S2 ============ */
@@ -359,13 +360,14 @@ body.idle, body.idle * { cursor: none; }
 .s15 .s15-lnk { position: absolute; top: 512px; width: 60px; height: 2px; background: var(--petrol); }
 .s15 .s15-one { left: 0; width: 1920px; top: 600px; text-align: center; font: 600 40px/1.25 var(--sans); color: var(--petrol); }
 .s15 .s15-end { left: 0; width: 1920px; top: 724px; text-align: center; font-size: 56px; line-height: 1.15; color: var(--ink); }
-.s15 .s15-veil { position: absolute; inset: 0; background: rgba(17, 20, 24, .28); }
-.s15 .s15-ty { left: 0; width: 1920px; top: 600px; text-align: center; font-size: 96px; line-height: 1.1; color: #fff; }
-.s15 .s15-qs { left: 0; width: 1920px; top: 726px; text-align: center; }
-.s15 .s15-cr { left: 0; width: 1920px; top: 962px; text-align: center; color: rgba(255, 255, 255, .7); }
+.s15 .s15-veil { position: absolute; inset: 0; background: rgba(17, 20, 24, .18); }
+.s15 .s15-ty { left: 120px; top: 716px; font-size: 96px; line-height: 1.1; color: #fff; }
+.s15 .s15-qs { left: 124px; top: 840px; }
+.s15 .s15-cr { left: 124px; top: 950px; color: rgba(255, 255, 255, .7); }
 
 /* ============ print (slides.pdf) ============ */
 @page { size: 1920px 1080px; margin: 0; }
 body.print { overflow: visible; height: auto; background: var(--paper); }
 body.print .scene.page { position: relative; break-after: page; page-break-after: always; }
 body.print #black, body.print #ind, body.print #progress { display: none; }
+body.print img { filter: none !important; }   /* keeps the original JPEGs in slides.pdf (a filter forces rasterising) */

@@ -540,6 +540,11 @@
       el.classList.add('page');
       document.body.appendChild(el);
       runBeats(el, si, 0, nBeats(si), false);
+      if (def.outro && def.printOutro) {   // S13: the outro brings every row back to 100 %
+        FX.root = el; A.instant = true;
+        def.outro(FX);
+        A.instant = false;
+      }
     });
     document.body.dataset.ready = '1';
   }
