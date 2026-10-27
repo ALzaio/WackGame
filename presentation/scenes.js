@@ -85,6 +85,32 @@
 
   /* =========================== PART A =========================== */
 
+  /* S0 · Title page: shown while the group is introduced, before the first ▸ */
+  const MEMBERS = [
+    ['Ahmad Faris Isyraf Bin Azman', 'BSW01085331'],
+    ['Alhaiqi Zeyad Ahmed Mubarak Ahmed', 'CS01085721'],
+    ['Attia Yousuf Mohamed Elmahdy Mohamed', 'SW01084180'],
+    ['Haris Imran Bin Ammar Rashidi', 'BSW01085334'],
+  ];
+  S.push({
+    id: 's0', part: 'A', bg: 'paper', b0Ms: 4000, label: 'Title',
+    autoMs: [],
+    html: `
+      <img class="abs s0-logo" src="assets/img/uniten-logo.png" alt="Universiti Tenaga Nasional">
+      <div class="abs s0-head">
+        <div class="eyebrow">CGEB4112 · Energy &amp; Computing · Section 1</div>
+        <h1 class="s0-title">Blockchain in the<br>Oil &amp; Gas Industry</h1>
+        <div class="s0-rule"></div>
+      </div>
+      <div class="abs s0-team">
+        <div class="s0-group"><span class="eyebrow">Group</span><span class="s0-num">10</span></div>
+        <ol class="s0-list">
+          ${MEMBERS.map(([n, id]) => `<li><span class="s0-name">${n}</span><span class="mono s0-id">${id}</span></li>`).join('')}
+        </ol>
+      </div>`,
+    beats: [null],
+  });
+
   /* S1 · The hook */
   S.push({
     id: 's1', part: 'A', bg: 'night', b0Ms: 900,

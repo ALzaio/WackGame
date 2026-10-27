@@ -134,6 +134,20 @@ body.touch.portrait #rotate { display: flex; animation: hint 6s var(--ease) forw
 .ndoc, .nbook { position: absolute; left: -26px; top: 104px; color: var(--ink-soft); }
 .nbook { color: var(--petrol); }
 
+/* ============ S0 · title page ============ */
+.s0 .s0-logo { left: 120px; top: 196px; height: 190px; width: auto; }
+.s0 .s0-head { left: 120px; top: 514px; width: 900px; }
+.s0 .s0-title { margin: 22px 0 0; font: 600 88px/1.06 var(--serif); letter-spacing: -.012em; color: var(--ink); }
+.s0 .s0-rule { width: 120px; height: 4px; background: var(--crude); margin-top: 40px; }
+.s0 .s0-team { left: 1119px; top: 342px; width: 681px; }
+.s0 .s0-group { display: flex; align-items: baseline; gap: 18px; padding-bottom: 26px; }
+.s0 .s0-group .eyebrow { font-size: 20px; }
+.s0 .s0-num { font: 600 96px/1 var(--serif); color: var(--petrol); }
+.s0 .s0-list { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
+.s0 .s0-list li { display: flex; flex-direction: column; justify-content: center; gap: 6px; height: 104px; border-top: 1px solid var(--line); }
+.s0 .s0-name { font: 600 30px/1.2 var(--sans); color: var(--ink); white-space: nowrap; }
+.s0 .s0-id { font-size: 22px; color: var(--ink-soft); letter-spacing: .02em; }
+
 /* ============ S1 ============ */
 .s1 .s1-docs { display: flex; align-items: center; gap: 24px; color: #fff; }
 .s1 .s1-docs .page { fill: none; }

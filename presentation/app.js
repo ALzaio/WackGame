@@ -244,6 +244,7 @@
      --------------------------------------------------------------- */
   const state = { si: 0, bi: 0, layer: null };
   const nBeats = si => SCENES[si].beats.length - 1;
+  const label = si => SCENES[si].label || `Scene ${SCENES[si].id.slice(1)}`;   // scene numbers follow script.md (title page = s0)
   const TOTAL = SCENES.reduce((n, s) => n + s.beats.length, 0);
 
   function build(si) {
@@ -458,7 +459,7 @@
     }
     if (state.si === target && state.bi === 0) { finishAll(); return; }
     jump(target, 0);
-    indicate(`Scene ${target + 1}`);
+    indicate(label(target));
   }
   function startHold() {
     if (!inp.dir) return;
@@ -502,7 +503,7 @@
       return;
     }
     if (e.repeat) return;
-    if (k === 'Home') { e.preventDefault(); jump(0, 0); indicate('Scene 1'); return; }
+    if (k === 'Home') { e.preventDefault(); jump(0, 0); indicate(label(0)); return; }
     const lk = k.toLowerCase();
     if (lk === 'f') toggleFullscreen();
     else if (lk === 'b' || k === '.') black.classList.toggle('on');
@@ -511,7 +512,7 @@
     else if (/^[1-6]$/.test(k)) {
       const part = 'ABCDEF'[+k - 1];
       const si = SCENES.findIndex(s => s.part === part);
-      if (si >= 0) { jump(si, 0); indicate(`Scene ${si + 1}`); }
+      if (si >= 0) { jump(si, 0); indicate(label(si)); }
     }
   }
   function onKeyUp(e) { if (NEXT.has(e.key) || PREV.has(e.key)) release('k:' + e.key); }
@@ -595,7 +596,8 @@
     if (window.visualViewport) visualViewport.addEventListener('resize', fit);
     addEventListener('orientationchange', () => setTimeout(fit, 200));
     preload();
-    const si = Math.min(SCENES.length - 1, Math.max(0, (parseInt(params.get('scene'), 10) || 1) - 1));
+    const asked = SCENES.findIndex(s => s.id === 's' + params.get('scene'));
+    const si = asked >= 0 ? asked : 0;
     const bi = Math.min(nBeats(si), Math.max(0, parseInt(params.get('beat'), 10) || 0));
     enterScene(si, bi);
     moved();

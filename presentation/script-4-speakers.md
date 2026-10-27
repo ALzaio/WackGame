@@ -21,6 +21,8 @@ Handover tip: the next speaker takes the clicker after the last line of the prev
 *Scenes 1–5 · ≈ 2:30*
 
 ### Part A · The hook and the oil business
+*(The title page — logo, course and group members — is on screen while the group is introduced. Speaker 1 presses Next once to leave it; the screen goes black, then the first ▸ below starts the show.)*
+
 ### Scene 1 — The hook
 ▸ This is an oil tanker.
 ▸ A large one can carry up to **two million barrels** of crude oil — a cargo worth more than a **hundred million dollars**.

@@ -15,6 +15,7 @@ imgs = {n: 'data:image/jpeg;base64,' + b64('assets/img/%s.jpg' % n) for n in use
 old = "const PH = name => `assets/img/${name}.jpg`;"
 assert old in scenes
 scenes = scenes.replace(old, 'const IMG = %s;\n  const PH = name => IMG[name];' % repr(imgs).replace("'", '"'))
+scenes = re.sub(r'assets/img/([\w-]+)\.png', lambda m: 'data:image/png;base64,' + b64('assets/img/%s.png' % m.group(1)), scenes)
 
 html = read('index.html')
 html = html.replace('<link rel="stylesheet" href="styles.css">', '<style>\n' + css + '\n</style>')

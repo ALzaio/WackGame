@@ -4,6 +4,7 @@ All photos are from Wikimedia Commons. They were cropped, resized and re-compres
 
 | File | Description | Source | Author | Licence |
 |---|---|---|---|---|
+| `assets/img/uniten-logo.png` | Universiti Tenaga Nasional logo (title page; trimmed and resized) | <https://commons.wikimedia.org/wiki/File:Universiti_Tenaga_Nasional_Logo.png> | Universiti Tenaga Nasional | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 | `assets/img/tanker.jpg` | Aerial view of the crude oil tanker "Strymon" moored at the Tetney Monobuoy, Lincolnshire, UK (2024) | <https://commons.wikimedia.org/wiki/File:Crude_Oil_Tanker_%22Strymon%22_on_Tetney_Monobuoy,_aerial_2024_(1)_-_geograph.org.uk_-_7839122.jpg> | Simon Tomson (via Geograph Britain and Ireland) | [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/) |
 | `assets/img/upstream.jpg` | Onshore drilling rig in the Williston oil field, North Dakota, USA | <https://commons.wikimedia.org/wiki/File:Williston_North_Dakota_Oil_Field_Oil_Rig_(5894614162).jpg> | Lindsey G | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
 | `assets/img/midstream.jpg` | Zig-zag section of the Trans-Alaska Pipeline crossing the tundra, Alaska, USA | <https://commons.wikimedia.org/wiki/File:Trans-Alaska_Pipeline_segment_1.jpg> | Arthur T. LaBar | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
