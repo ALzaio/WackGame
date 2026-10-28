@@ -100,6 +100,9 @@ body.touch.portrait #rotate { display: flex; animation: hint 6s var(--ease) forw
 .label { font: 500 28px/1.3 var(--sans); color: var(--ink-soft); }
 .cap { font: 400 20px/1.3 var(--sans); color: var(--ink-soft); }
 .eyebrow { font: 500 20px/1.3 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+/* source line: small, light, bottom-left */
+.src { position: absolute; left: 120px; bottom: 36px; font: 400 20px/1.3 var(--sans); color: var(--ink-soft); opacity: .6; white-space: nowrap; pointer-events: none; }
+.src.dark { color: #fff; opacity: .5; }
 .petrol { color: var(--petrol); } .crude { color: var(--crude); } .risk { color: var(--risk); } .ok { color: var(--ok); }
 .w80 { color: rgba(255, 255, 255, .8); }
 .tnum { font-variant-numeric: tabular-nums; }
@@ -398,3 +401,4 @@ body.print { overflow: visible; height: auto; background: var(--paper); }
 body.print .scene.page { position: relative; break-after: page; page-break-after: always; }
 body.print #black, body.print #ind, body.print #progress { display: none; }
 body.print img { filter: none !important; }   /* keeps the original JPEGs in slides.pdf (a filter forces rasterising) */
+.s10 .src { width: 740px; white-space: normal; }   /* stays inside the photo half */

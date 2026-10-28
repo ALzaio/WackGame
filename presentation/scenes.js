@@ -78,6 +78,8 @@
     `<svg class="ico ${cls}" width="${size}" height="${size}" viewBox="0 0 48 48" style="stroke-width:${(4 * 48 / size).toFixed(2)}" aria-hidden="true">${ICONS.x}</svg>`;
 
   const PH = name => `assets/img/${name}.jpg`;
+  /* small source line, bottom-left */
+  const src = (text, dark = false) => `<div class="src${dark ? ' dark' : ''}">${text}</div>`;
   const COLX = [120, 690.67, 1261.33];      // the three 4-column groups
   const COLW = 538.67;
 
@@ -116,7 +118,7 @@
     id: 's1', part: 'A', bg: 'night', b0Ms: 900,
     autoMs: [2200, 5600, 4000, 3300],
     html: `
-      <div class="photo off" id="s1-photo"><img src="${PH('tanker')}" alt=""><div class="scrim"></div></div>
+      <div class="photo off" id="s1-photo"><img src="${PH('tanker')}" alt=""><div class="scrim"></div>${src('Photo: Simon Tomson, CC BY-SA 2.0, via Wikimedia Commons · Tanker capacity: U.S. Energy Information Administration', true)}</div>
       <div class="abs s1-docs" style="left:120px;top:590px">
         <span class="s1-doc off">${icon('mail', 64)}</span>
         <span class="s1-doc off">${icon('pdf', 64)}</span>
@@ -188,6 +190,7 @@
       <div class="cargo off" id="s3-dot" style="left:106px;top:845px"></div>
       <svg class="abs ico off" id="s3-br" width="1680" height="30" viewBox="0 0 1680 30" style="left:120px;top:282px;stroke-width:3;color:var(--petrol)">
         <path class="ln" pathLength="1" d="M2 28V4h1676v24"/></svg>
+      ${src('Photos via Wikimedia Commons: Lindsey G (CC BY 2.0) · Arthur T. LaBar (CC BY 2.0) · Carol M. Highsmith, Library of Congress (public domain)')}
       <div class="abs label petrol off" id="s3-br-l" style="right:120px;top:232px;font-weight:600">Petronas: all three</div>`,
     beats: [
       null,
@@ -318,7 +321,7 @@
         <div class="abs serif off s5-ht" style="left:120px;top:634px;font-size:72px;line-height:1.1;color:#fff">Hin Leong collapses</div>
         <div class="abs kw off s5-ht" style="left:120px;top:732px;color:#fff">US$<span class="tnum" id="s5-bn">3.5</span> bn owed to 23 banks</div>
         <div class="abs label w80 off s5-ht" style="left:120px;top:800px">forged documents · same cargo financed more than once</div>
-        <div class="abs cap off s5-ht" style="right:120px;top:950px;color:rgba(255,255,255,.7)">Sources: PwC report via GTR, CNBC, 2020</div>
+        ${src('Sources: PwC report via Global Trade Review (GTR); CNBC (2020) · Photo: DonQue., CC BY-SA 3.0, via Wikimedia Commons', true)}
       </div>
       <div class="abs serif s5-truth off" id="s5-truth">No <span class="hl">single<i class="hl-bg"></i></span> version of the truth.</div>`,
     beats: [
@@ -369,6 +372,7 @@
     autoMs: [3100, 6900, 8500, 7200, 4000],
     html: `
       <h2 class="title">Blockchain = one shared record</h2>
+      ${src('Source: S. Nakamoto, “Bitcoin: A Peer-to-Peer Electronic Cash System” (2008)')}
       ${ROW5.map((n, i) => `
         <div class="ng" style="left:${n.x}px;top:${n.y}px">
           <div class="node">${icon(n.ico, 48)}</div>
@@ -462,6 +466,7 @@
     autoMs: [3000, 7400, 9200],
     html: `
       <h2 class="title" id="s7-t1">Who can join?</h2>
+      ${src('Sources: S. Nakamoto (2008) · N. Szabo, “Formalizing and Securing Relationships on Public Networks” (1997)')}
       <h2 class="title off" id="s7-t2">Smart contract</h2>
       <div class="s7-col off" id="s7-pub" style="left:120px">
         <div class="s7-h">Public</div>
@@ -528,6 +533,7 @@
     autoMs: [3800, 11900, 5100, 4300, 4000],
     html: `
       <h2 class="title">Where it’s used</h2>
+      ${src('Sources: Data Gumbo (GumboNet) · Blockchain for Energy (formerly OOC Oil &amp; Gas Blockchain Consortium)')}
       <div id="s8-bar">
         <div class="vb-rail off" id="s8-rail"></div>
         ${STAGES.map((s, i) => `
@@ -618,6 +624,7 @@
     html: `
       <div class="photo s10-ph"><img src="${PH('northsea')}" alt=""><div class="scrim"></div>
         <div class="abs label w80 off" id="s10-cap" style="left:120px;top:932px">First market: North Sea crude (Brent)</div>
+        ${src('Sources: VAKT (2017–2020) · Photo: Banja-Frans Mulder, CC BY 3.0, via Wikimedia Commons', true)}
       </div>
       <div class="abs big off" id="s10-vakt" style="left:1080px;top:196px">VAKT</div>
       <div class="abs label off" id="s10-loc" style="left:1084px;top:334px">London · real-world example</div>
@@ -680,6 +687,7 @@
     autoMs: [2100, 5100, 6400, 5100, 9300, 7000],
     html: `
       <h2 class="title">How a deal works</h2>
+      ${src('Sources: VAKT · komgo · J.P. Morgan (Quorum)')}
       <div class="abs s11-conn off" id="s11-conn"></div>
       ${STEPS.map((s, i) => `
         <div class="s11-step off" id="s11-s${i + 1}" style="left:${STEPX[i] - 40}px"><span class="mono">${i + 1}</span></div>
@@ -772,6 +780,7 @@
     autoMs: [4300, 4100, 6200],
     html: `
       <h2 class="title">The result</h2>
+      ${src('Sources: VAKT (launch, 2019; vSure at Shell Trading Rotterdam, 2024)')}
       <div class="s12-g off" id="s12-before"><div class="s12-in">
         <div class="s12-docs">${SCATTER.map(([x, y, r], i) => `<div class="abs" style="left:${x}px;top:${y}px;rotate:${r}deg">${docIcon(i, 72)}</div>`).join('')}</div>
         <div class="label s12-l">many copies</div>
@@ -918,6 +927,7 @@
       <div class="abs s15-one off" id="s15-l2">one shared record</div>
       <div class="abs serif s15-end off" id="s15-l3">Not perfect yet — but VAKT shows it works.</div>
       <div class="photo off" id="s15-photo"><img src="${PH('tanker')}" alt=""><div class="scrim"></div><div class="s15-veil"></div>
+        ${src('Photo: Simon Tomson, CC BY-SA 2.0, via Wikimedia Commons', true)}
         <div class="abs serif s15-ty off" id="s15-ty">Thank you</div>
         <div class="abs kw w80 s15-qs off" id="s15-qs">Questions?</div>
         <div class="abs cap s15-cr off" id="s15-cr">Group 10 · CGEB4112 Energy and Computing</div>
